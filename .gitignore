@@ -1,0 +1,7 @@
+wintun/
+wintun-*.zip
+.vs
+bin/
+obj/
+.nuke/temp
+*.nupkg

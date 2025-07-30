@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <RuntimeIdentifiers>win-x64;win-x86;win-arm64</RuntimeIdentifiers>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+        <PackageReference Include="Microsoft.VisualStudio.Threading.Only" />
+    </ItemGroup>
+    <!-- NuSpec -->
+    <PropertyGroup>
+        <_Year>$([System.DateTime]::Now.ToString('yyyy'))</_Year>
+        <Authors>aneilmac</Authors>
+        <Copyright>Copyright © 2025-$(_Year) $(Authors)</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags>Wintun;tun/tap;network adapater;driver;wrapper;async</PackageTags>
+        <Description>
+          NetWintun is a C# wrapper around the native Wintun library. Wintun is a very simple and minimal TUN driver for the Windows kernel, which provides userspace programs with a simple network adapter for reading and writing packets.
+        </Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>0.0.0.0</Version>
+    </PropertyGroup>
+    <!-- Pack Native libs for nuget -->
+    <ItemGroup>
+        <None Include="$(ROOTDIR)README.md" Pack="true" PackagePath="\"/>
+        <None Include="$(LIBDIR)amd64\wintun.dll" TargetPath="runtimes\win-x64\native\wintun.dll" Pack="true" PackagePath="runtimes\win-x64\native">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Visible>false</Visible>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+        </None>
+        <None Include="$(LIBDIR)arm64\wintun.dll" TargetPath="runtimes\win-arm64\native\wintun.dll" Pack="true" PackagePath="runtimes\win-arm64\native">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Visible>false</Visible>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+        </None>
+        <None Include="$(LIBDIR)x86\wintun.dll" TargetPath="runtimes\win-x86\native\wintun.dll" Pack="true" PackagePath="runtimes\win-x86\native">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Visible>false</Visible>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+        </None>
+    </ItemGroup>
+
+</Project>
