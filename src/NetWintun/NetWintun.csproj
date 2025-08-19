@@ -9,6 +9,9 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging" />
         <PackageReference Include="Microsoft.VisualStudio.Threading.Only" />
+        <PackageReference Include="GitVersion.MsBuild">
+            <PrivateAssets>All</PrivateAssets>
+        </PackageReference>
     </ItemGroup>
     <!-- NuSpec -->
     <PropertyGroup>
@@ -21,7 +24,6 @@
           NetWintun is a C# wrapper around the native Wintun library. Wintun is a very simple and minimal TUN driver for the Windows kernel, which provides userspace programs with a simple network adapter for reading and writing packets.
         </Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>0.0.0.0</Version>
     </PropertyGroup>
     <!-- Pack Native libs for nuget -->
     <ItemGroup>
