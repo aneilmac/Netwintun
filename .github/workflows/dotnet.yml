@@ -5,7 +5,7 @@ name: .NET
 
 env:
   WINTUN_VERSION: 0.14.1
-  WINTUN_CHECKSUM: 07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51
+  WINTUN_CHECKSUM: ec
 
 on:
   push:
@@ -21,14 +21,11 @@ jobs:
       with:
         fetch-depth: 0
     - name: Download wintun
-      run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip -o wintun.zip
-      shell: bash
+      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-$env:WINTUN_VERSION.zip -OutFile wintun.zip
     - name: Verify wintun
-      run: shasum -a 256 wintun.zip | awk -vchecksum="${WINTUN_CHECKSUM}" '$1!=checksum{exit 1}'
-      shell: bash
+      run: if((Get-FileHash wintun.zip -Algorithm SHA256).Hash -NE $env:WINTUN_CHECKSUM){exit 1}
     - name: Unzip wintun
-      run: unzip wintun.zip
-      shell: bash
+      run: Expand-Archive wintun.zip
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
