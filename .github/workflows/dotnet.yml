@@ -25,7 +25,7 @@ jobs:
     - name: Verify wintun
       run: if((Get-FileHash wintun.zip -Algorithm SHA256).Hash -NE $env:WINTUN_CHECKSUM){exit 1}
     - name: Unzip wintun
-      run: Expand-Archive wintun.zip
+      run: Expand-Archive -DestinationPath . wintun.zip
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
