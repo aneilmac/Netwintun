@@ -19,11 +19,11 @@ jobs:
 
     steps:
     - name: Download wintun
-      run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip
+      run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip -o wintun.zip
     - name: Verify wintun
-      run: shasum wintun-${WINTUN_VERSION}.zip | awk '$1!="${WINTUN_CHECKSUM}"{exit 1}'
+      run: shasum wintun.zip | awk '$1!="${WINTUN_CHECKSUM}"{exit 1}'
     - name: Unzip wintun
-      run: unzip wintun-${WINTUN_VERSION}.zip
+      run: unzip wintun.zip
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
