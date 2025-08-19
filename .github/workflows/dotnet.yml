@@ -22,10 +22,13 @@ jobs:
         fetch-depth: 0
     - name: Download wintun
       run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip -o wintun.zip
+      shell: bash
     - name: Verify wintun
       run: shasum -a 256 wintun.zip | awk -vchecksum="${WINTUN_CHECKSUM}" '$1!=checksum{exit 1}'
+      shell: bash
     - name: Unzip wintun
       run: unzip wintun.zip
+      shell: bash
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
