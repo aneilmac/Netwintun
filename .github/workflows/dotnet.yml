@@ -9,9 +9,9 @@ env:
 
 on:
   push:
-    branches: [ "main", "gitflow-branch" ]
+    branches: [ "main", "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
 
 jobs:
   build:
