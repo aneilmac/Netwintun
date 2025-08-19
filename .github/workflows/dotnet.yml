@@ -1,0 +1,45 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: NetWintun pipeline
+
+env:
+  WINTUN_VERSION: 0.14.1
+  WINTUN_CHECKSUM: 07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Download wintun
+      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-$env:WINTUN_VERSION.zip -OutFile wintun.zip
+    - name: Verify wintun
+      run: if((Get-FileHash wintun.zip -Algorithm SHA256).Hash -NE $env:WINTUN_CHECKSUM){exit 1}
+    - name: Unzip wintun
+      run: Expand-Archive -DestinationPath . wintun.zip
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    - name: Test
+      run: dotnet test  -c Release --no-build  --logger "trx;logfilename=testResults.trx"
+      working-directory: tests/NetWinTun.Tests
+    - name: Pack
+      run: dotnet pack -c Release --no-build src/NetWintun
+    - uses: actions/upload-artifact@v4
+      with:
+        name: NetWintun 
+        path: src/NetWintun/bin/Release/NetWintun.*.nupkg # or path/to/artifact

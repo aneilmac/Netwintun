@@ -23,6 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Netwintun\Netwintun.csproj" />
+        <ProjectReference Include="..\..\src\NetWintun\NetWintun.csproj" />
     </ItemGroup>
 </Project>
