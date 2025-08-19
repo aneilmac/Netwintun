@@ -8,11 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic", "examples\Basic\Basic.csproj", "{562A4CD1-89CC-19A5-71EE-CBE026986AF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic", "examples\Basic\Basic.csproj", "{562A4CD1-89CC-19A5-71EE-CBE026986AF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetWintun", "src\NetWintun\NetWintun.csproj", "{69033910-F06A-5056-788F-1386C2E7592C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetWintun", "src\NetWintun\NetWintun.csproj", "{69033910-F06A-5056-788F-1386C2E7592C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetWintun.Tests", "tests\NetWintun.Tests\NetWintun.Tests.csproj", "{56CCC604-0DD6-1798-D24D-1A5946FC8C1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetWintun.Tests", "tests\NetWintun.Tests\NetWintun.Tests.csproj", "{56CCC604-0DD6-1798-D24D-1A5946FC8C1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
