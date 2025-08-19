@@ -21,7 +21,7 @@ jobs:
     - name: Download wintun
       run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip -o wintun.zip
     - name: Verify wintun
-      run: shasum -a 256 wintun.zip | awk -vcheckum="${WINTUN_CHECKSUM}" '$1!=checksum{exit 1}'
+      run: shasum -a 256 wintun.zip | awk -vchecksum="${WINTUN_CHECKSUM}" '$1!=checksum{exit 1}'
     - name: Unzip wintun
       run: unzip wintun.zip
     - uses: actions/checkout@v4
