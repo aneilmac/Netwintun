@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: NetWintun pipeline
 
 env:
   WINTUN_VERSION: 0.14.1
@@ -36,12 +36,11 @@ jobs:
       run: dotnet build -c Release --no-restore
     - name: Test
       run: dotnet test  -c Release --no-build  --logger trx --results-directory "TestResults"
-    - name: Upload dotnet test results
+    - name: Upload Test Results
       uses: actions/upload-artifact@v4
       with:
-        name: dotnet-results
+        name: dotnet-results-*
         path: TestResults
-        # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
     - name: Pack
       run: dotnet pack -c Release --no-build src/NetWintun
