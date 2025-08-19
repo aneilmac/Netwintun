@@ -24,6 +24,9 @@
           NetWintun is a C# wrapper around the native Wintun library. Wintun is a very simple and minimal TUN driver for the Windows kernel, which provides userspace programs with a simple network adapter for reading and writing packets.
         </Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/aneilmac/Netwintun</RepositoryUrl> 
+        <PackageProjectUrl>https://github.com/aneilmac/Netwintun</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType> 
     </PropertyGroup>
     <!-- Pack Native libs for nuget -->
     <ItemGroup>
