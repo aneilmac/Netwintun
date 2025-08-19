@@ -3,18 +3,27 @@
 
 name: .NET
 
+env:
+  WINTUN_VERSION: 0.14.1
+  WINTUN_CHECKSUM: 07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51
+
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main", "gitflow-branch" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
+    - name: Download wintun
+      run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip
+    - name: Verify wintun
+      run: shasum wintun-${WINTUN_VERSION}.zip | awk '$1!="${WINTUN_CHECKSUM}"{exit 1}'
+    - name: Unzip wintun
+      run: unzip wintun-${WINTUN_VERSION}.zip
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
