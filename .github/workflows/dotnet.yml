@@ -16,9 +16,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Download wintun
       run: curl https://www.wintun.net/builds/wintun-${WINTUN_VERSION}.zip -o wintun.zip
     - name: Verify wintun
