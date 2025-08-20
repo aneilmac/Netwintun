@@ -3,8 +3,6 @@ name: NetWintun - Test
 on:
   pull_request:
     branches: [ "main", "develop" ]
-  push:
-    branches-ignore: [ "main", "develop" ] # run tests on feature branches
 
 jobs:
   test:
