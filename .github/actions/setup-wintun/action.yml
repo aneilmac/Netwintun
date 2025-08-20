@@ -17,7 +17,7 @@ runs:
       shell: pwsh
       run: |
         if ((Get-FileHash wintun.zip -Algorithm SHA256).Hash -ne "${env:INPUT_WINTUN_CHECKSUM}") {
-          Write-Error "Checksum verification failed!"
+          Write-Error "Checksum verification failed."
           exit 1
         }
     - name: Extract Wintun
