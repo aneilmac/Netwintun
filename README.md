@@ -1,4 +1,4 @@
-# NetWintun [![NuGet Version](https://img.shields.io/nuget/v/NetWinTun)](https://www.nuget.org/packages/NetWintun)
+# NetWintun [![NuGet Version](https://img.shields.io/nuget/v/NetWinTun)](https://www.nuget.org/packages/NetWintun) [![NetWintun - Test](https://github.com/aneilmac/Netwintun/actions/workflows/test.yml/badge.svg)](https://github.com/aneilmac/Netwintun/actions/workflows/test.yml)
 
 NetWintun is an unofficial C# wrapper around the [Wintun][wintun] library.
 
