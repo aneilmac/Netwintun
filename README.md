@@ -1,4 +1,4 @@
-# NetWintun ![NuGet Version](https://img.shields.io/nuget/v/NetWinTun)
+# NetWintun [![NuGet Version](https://img.shields.io/nuget/v/NetWinTun)](https://www.nuget.org/packages/NetWintun)
 
 NetWintun is an unofficial C# wrapper around the [Wintun][wintun] library.
 
