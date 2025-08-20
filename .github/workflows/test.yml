@@ -6,6 +6,9 @@ on:
   push:
     branches-ignore: [ "main", "develop" ] # run tests on feature branches
 
+env:
+  BUILD_NUMBER: $${{ github.run_id }}
+
 jobs:
   test:
     runs-on: windows-latest
