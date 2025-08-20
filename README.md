@@ -46,37 +46,9 @@ An [Example][example] program is provided to demonstrate integration.
 
 ## Building 
 
-This project uses the [Nuke][nuke] build system, which can be fetched via:
-
-```sh
-dotnet tool install Nuke.GlobalTool --global
-```
-
-You may then run the nuke tool from the repo directory.
-
 ### Prerequisite
 
-To download and unpack the prebuilt [Wintun][Wintun] librarires run:
-
-```sh
-nuke FetchWintun
-```
-
-(Alternatively you can manually unzip the contents of [`wintup.zip`][prebuilt bins] to `/wintun`.)
-
-#### Packing nuget package
-
-To create a versioned Wintun package run:
-
-```sh
-nuke Pack --configuration Release
-```
-
-To cleanup all resources run:
-
-```sh
-nuke Clean
-```
+You must manually unzip the contents of [`wintup.zip`][prebuilt bins] to `/wintun`.
 
 ## Licensing
 
