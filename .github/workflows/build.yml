@@ -1,0 +1,32 @@
+name: NetWintun - Build & Pack
+
+on:
+  workflow_dispatch: # manual build trigger
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build-pack:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Wintun
+        uses: ./.github/actions/setup-wintun
+        with:
+            checksum: ${{ vars.WINTUN_CHECKSUM }}
+            version: ${{ vars.WINTUN_VERSION }}
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build -c Release --no-restore
+      - name: Pack
+        run: dotnet pack -c Release --no-build src/NetWintun
+      - name: Upload nupkg
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetWintun-nuget
+          path: src/NetWintun/bin/Release/NetWintun.*.nupkg

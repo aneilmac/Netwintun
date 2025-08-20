@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace NetWintun.Tests;
 
-public class LoadLibraryFixture : IDisposable
+public class LoadLibraryFixture
 {
     public LoadLibraryFixture()
     {
@@ -20,9 +20,5 @@ public class LoadLibraryFixture : IDisposable
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "runtimes", RuntimeInformation.RuntimeIdentifier, "native", "wintun.dll"),
             out _);
-    }
-
-    public void Dispose()
-    {
     }
 }
