@@ -32,5 +32,5 @@ jobs:
       - name: Upload nupkg
         uses: actions/upload-artifact@v4
         with:
-          name: NetWintun-nupkg
+          name: NetWintun-nuget
           path: src/NetWintun/bin/Release/NetWintun.*.nupkg
