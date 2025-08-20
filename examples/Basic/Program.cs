@@ -4,16 +4,8 @@
  * A simple test program that waits for and displays incoming packets.
  */
 
-using System.Reflection;
-using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using NetWintun;
-
-// Load the libraries from a given path.
-NativeLibrary.TryLoad(Path.Join(
-    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-    "runtimes", RuntimeInformation.RuntimeIdentifier, "native", "wintun.dll"),
-    out _);
 
 // Setup the logger
 using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());

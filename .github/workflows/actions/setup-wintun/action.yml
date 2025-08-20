@@ -1,0 +1,18 @@
+name: "Setup Wintun"
+description: "Downloads and verifies the Wintun driver"
+runs:
+  using: "composite"
+  steps:
+    - name: Download Wintun
+      shell: pwsh
+      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-${{ vars.WINTUN_VERSION }}.zip -OutFile wintun.zip
+    - name: Verify Wintun
+      shell: pwsh
+      run: |
+        if ((Get-FileHash wintun.zip -Algorithm SHA256).Hash -ne "${{ vars.WINTUN_CHECKSUM }}") {
+          Write-Error "Checksum verification failed!"
+          exit 1
+        }
+    - name: Extract Wintun
+      shell: pwsh
+      run: Expand-Archive -DestinationPath . wintun.zip

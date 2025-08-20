@@ -1,0 +1,18 @@
+name: NetWintun - Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Download nupkg artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: NetWintun-nuget
+          path: ./nupkg
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      - name: Push to NuGet
+        run: dotnet nuget push ./nupkg/NetWintun.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
