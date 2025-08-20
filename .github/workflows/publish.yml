@@ -3,7 +3,7 @@ name: NetWintun - Publish
 on:
   workflow_dispatch:
   push:
-    branches: [ "develop" ]
+    branches: [ "main", "develop" ]
 
 jobs:
   build:
