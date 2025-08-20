@@ -20,4 +20,4 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
       - name: Push to NuGet
-        run: dotnet nuget push ./nupkg/NetWintun.*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./nupkg/NetWintun.*.nupkg --source nuget.org -k ${{ secrets.NUGET_TOKEN }}
