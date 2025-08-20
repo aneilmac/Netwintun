@@ -5,11 +5,11 @@ runs:
   steps:
     - name: Download Wintun
       shell: pwsh
-      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-${{ vars.WINTUN_VERSION }}.zip -OutFile wintun.zip
+      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-${env:WINTUN_VERSION}.zip -OutFile wintun.zip
     - name: Verify Wintun
       shell: pwsh
       run: |
-        if ((Get-FileHash wintun.zip -Algorithm SHA256).Hash -ne "${{ vars.WINTUN_CHECKSUM }}") {
+        if ((Get-FileHash wintun.zip -Algorithm SHA256).Hash -ne "${env:WINTUN_CHECKSUM}") {
           Write-Error "Checksum verification failed!"
           exit 1
         }
