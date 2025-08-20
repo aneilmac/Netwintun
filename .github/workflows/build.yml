@@ -14,6 +14,9 @@ jobs:
           fetch-depth: 0
       - name: Setup Wintun
         uses: ./.github/actions/setup-wintun
+        with:
+            checksum: ${{ vars.WINTUN_CHECKSUM }}
+            version: ${{ vars.WINTUN_VERSION }}
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
       - name: Restore dependencies

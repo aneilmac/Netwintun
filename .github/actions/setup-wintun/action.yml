@@ -1,23 +1,25 @@
 name: "Setup Wintun"
 description: "Downloads and verifies the Wintun driver"
+inputs:
+  checksum:
+    description: "Expected checksum of payload"
+    required: true
+  version:
+    description: "Wintun version to download"
+    required: true
 runs:
   using: "composite"
   steps:
     - name: Download Wintun
       shell: pwsh
-      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-${env:WINTUN_VERSION}.zip -OutFile wintun.zip
-      env:
-        WINTUN_VERSION: ${{ vars.WINTUN_VERSION }}
-        
+      run: Invoke-WebRequest -Uri https://www.wintun.net/builds/wintun-${env:INPUT_WINTUN_VERSION}.zip -OutFile wintun.zip
     - name: Verify Wintun
       shell: pwsh
       run: |
-        if ((Get-FileHash wintun.zip -Algorithm SHA256).Hash -ne "${env:WINTUN_CHECKSUM}") {
+        if ((Get-FileHash wintun.zip -Algorithm SHA256).Hash -ne "${env:INPUT_WINTUN_CHECKSUM}") {
           Write-Error "Checksum verification failed!"
           exit 1
         }
-      env:
-        WINTUN_CHECKSUM: ${{ vars.WINTUN_CHECKSUM }}
     - name: Extract Wintun
       shell: pwsh
       run: Expand-Archive -DestinationPath . wintun.zip
