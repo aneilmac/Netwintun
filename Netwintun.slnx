@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/examples/">
+    <Project Path="examples/Basic/Basic.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/NetWintun/NetWintun.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NetWintun.Tests/NetWintun.Tests.csproj" />
+  </Folder>
+</Solution>
