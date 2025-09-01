@@ -6,16 +6,18 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
+    <PropertyGroup>
+        <GenerateGitVersionInformation  Condition="'$(NBGV_GitEngine)' == 'disabled'">
+            false
+        </GenerateGitVersionInformation >
+    </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="Nerdbank.GitVersioning">
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Logging" />
         <PackageReference Include="Microsoft.VisualStudio.Threading.Only" />
-        <PackageReference Include="GitVersion.MsBuild">
-            <PrivateAssets>All</PrivateAssets>
-        </PackageReference>
     </ItemGroup>
-    <PropertyGroup>
-        <GetVersion Condition="'$(NBGV_GitEngine)' == 'disabled'">false</GetVersion>
-    </PropertyGroup>
     <!-- NuSpec -->
     <PropertyGroup>
         <_Year>$([System.DateTime]::Now.ToString('yyyy'))</_Year>
