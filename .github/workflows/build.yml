@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main", "develop" ]
 
-env:
-  BUILD_NUMBER: ${{ github.run_number }}
-
 jobs:
   build-pack:
     runs-on: windows-latest
