@@ -6,11 +6,6 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
-    <PropertyGroup>
-        <GenerateGitVersionInformation  Condition="'$(NBGV_GitEngine)' == 'disabled'">
-            false
-        </GenerateGitVersionInformation >
-    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Nerdbank.GitVersioning">
           <PrivateAssets>all</PrivateAssets>
