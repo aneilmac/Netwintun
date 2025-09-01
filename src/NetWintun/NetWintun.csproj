@@ -5,7 +5,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <GitVersion_AllowShallowEnabled>true</GitVersion_AllowShallowEnabled>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging" />
@@ -14,6 +13,9 @@
             <PrivateAssets>All</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+    <PropertyGroup>
+        <GetVersion Condition="'$(NBGV_GitEngine)' == 'disabled'">false</GetVersion>
+    </PropertyGroup>
     <!-- NuSpec -->
     <PropertyGroup>
         <_Year>$([System.DateTime]::Now.ToString('yyyy'))</_Year>
