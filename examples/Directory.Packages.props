@@ -1,7 +1,7 @@
 <Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove(Directory.Packages.props, $(MSBuildThisFileDirectory)..))" />
   <ItemGroup>
-    <PackageVersion Include="NetWintun" Version="[1.0.1]" />
+    <PackageVersion Include="NetWintun" Version="[1.0.2]" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="9.0.8" />
   </ItemGroup>
 </Project>
