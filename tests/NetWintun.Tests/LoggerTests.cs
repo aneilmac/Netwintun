@@ -1,4 +1,5 @@
-﻿using Neovolve.Logging.Xunit;
+﻿using System.Runtime.Versioning;
+using Neovolve.Logging.Xunit;
 
 namespace NetWintun.Tests;
 
@@ -6,6 +7,7 @@ public class LoggerTests : IDisposable
 {
     private readonly ICacheLogger _logger;
 
+    [SupportedOSPlatform("Windows")]
     public LoggerTests(ITestOutputHelper testOutput)
     {
         _logger = testOutput.BuildLoggerFor<LoggerTests>();
@@ -17,7 +19,7 @@ public class LoggerTests : IDisposable
         _logger.Dispose();
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public void TestLoggerSetup()
     {
         using var _ = Adapter.Create("Example", "WinTun");
