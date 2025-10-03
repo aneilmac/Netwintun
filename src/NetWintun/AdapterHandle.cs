@@ -1,7 +1,9 @@
 ﻿using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 namespace NetWintun;
 
+[SupportedOSPlatform("Windows")]
 internal class AdapterHandle(IntPtr handle) : SafeHandle(handle, true)
 {
     public AdapterHandle() : this(0)

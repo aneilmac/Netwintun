@@ -1,7 +1,10 @@
 ﻿using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 namespace NetWintun;
 
+
+[SupportedOSPlatform("Windows")]
 internal static partial class PInvoke
 {
     [LibraryImport("wintun", EntryPoint = "WintunCreateAdapter", SetLastError = true,

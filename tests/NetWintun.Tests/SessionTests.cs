@@ -1,9 +1,11 @@
-﻿namespace NetWintun.Tests;
+﻿using System.Runtime.Versioning;
+
+namespace NetWintun.Tests;
 
 public class SessionTests
 {
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public void SimpleReceivePacket()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -11,7 +13,7 @@ public class SessionTests
         session.TryReceivePacket(out _);
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public async Task SimpleReceivePacketAsync()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -19,7 +21,7 @@ public class SessionTests
         _ = await session.ReceivePacketAsync(TestContext.Current.CancellationToken);
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public void SimpleSendPacket()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -27,7 +29,7 @@ public class SessionTests
         session.SendPacket(new byte[5]);
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public void SendPacketTooBig()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -36,7 +38,7 @@ public class SessionTests
         Assert.Throws<PacketSizeTooLargeException>(() => session.SendPacket(new byte[Wintun.Constants.MaxRingCapacity + 1]));
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public void SendPacketDispose()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -45,7 +47,7 @@ public class SessionTests
         Assert.Throws<ObjectDisposedException>(() => session.SendPacket(ReadOnlySpan<byte>.Empty));
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public async Task ReceivePacketAsyncCancelled()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -53,7 +55,7 @@ public class SessionTests
         await Assert.ThrowsAsync<OperationCanceledException>(async () => await session.ReceivePacketAsync(new CancellationToken(true)));
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public async Task ReceivePacketAsyncDispose()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
@@ -62,7 +64,7 @@ public class SessionTests
         await Assert.ThrowsAsync<ObjectDisposedException>(async () => await session.ReceivePacketAsync(TestContext.Current.CancellationToken));
     }
 
-    [Fact]
+    [Fact, SupportedOSPlatform("Windows")]
     public void TryReceivePacketDispose()
     {
         using var adapter = Adapter.Create("Demo", "Wintun");
