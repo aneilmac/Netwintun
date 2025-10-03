@@ -3,6 +3,8 @@
  *
  * A simple test program that waits for and displays incoming packets.
  */
+
+using System.Runtime.Versioning;
 using Microsoft.Extensions.Logging;
 using NetWintun;
 
@@ -42,3 +44,7 @@ catch (OperationCanceledException)
 {
     // Suppress cancellation exception
 }
+
+
+[SupportedOSPlatform("Windows")]
+public partial class Program { }
