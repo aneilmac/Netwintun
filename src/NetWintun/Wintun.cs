@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Runtime.Versioning;
+using Microsoft.Extensions.Logging;
 
 namespace NetWintun;
 
@@ -38,6 +39,7 @@ public static class Wintun
     /// <exception cref="System.ComponentModel.Win32Exception">
     /// Thrown if function fails
     /// </exception>
+    [SupportedOSPlatform("Windows")]
     public static void DeleteDriver()
     {
         Exceptions.ThrowWin32If(!PInvoke.DeleteDriver());
@@ -50,6 +52,7 @@ public static class Wintun
     /// <exception cref="System.ComponentModel.Win32Exception">
     /// Thrown if version retrieval fails
     /// </exception>
+    [SupportedOSPlatform("Windows")]
     public static uint GetRunningDriverVersion()
     {
         var version = PInvoke.GetRunningDriverVersion();
@@ -63,6 +66,7 @@ public static class Wintun
     /// Sets the logger.
     /// </summary>
     /// <param name="logger">Logger to log to, set to <c>null</c> to disable.</param>
+    [SupportedOSPlatform("Windows")]
     public static void SetLogger(ILogger? logger)
     {
         _callback = Callback; // GC protection

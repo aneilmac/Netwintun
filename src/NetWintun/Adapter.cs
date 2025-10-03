@@ -1,4 +1,6 @@
-﻿namespace NetWintun;
+﻿using System.Runtime.Versioning;
+
+namespace NetWintun;
 
 /// <summary>
 /// A Wintun adapter.
@@ -32,6 +34,7 @@ public sealed class Adapter : IDisposable
     /// </returns>
     /// <exception cref="NameTooLongException">Thrown if <paramref name="name"/> or <paramref name="tunnelType"/> are too long</exception>
     /// <exception cref="System.ComponentModel.Win32Exception">Thrown if construction fails</exception>
+    [SupportedOSPlatform("Windows")]
     public static Adapter Create(string name, string tunnelType, Guid? requestedGuid = null)
     {
         Exceptions.ThrowIfTooLong(name);
@@ -45,7 +48,7 @@ public sealed class Adapter : IDisposable
         var guid = requestedGuid.Value;
         return new Adapter(PInvoke.CreateAdapter(name, tunnelType, guid));
     }
-    
+
     /// <summary>
     ///  Opens an existing Wintun adapter.
     /// </summary>
@@ -59,12 +62,14 @@ public sealed class Adapter : IDisposable
     /// </returns>
     /// <exception cref="NameTooLongException">Thrown if <paramref name="name"/> ise too long</exception>
     /// <exception cref="System.ComponentModel.Win32Exception">Thrown if construction fails</exception>
+    [SupportedOSPlatform("Windows")]
     public static Adapter Open(string name)
     {
         Exceptions.ThrowIfTooLong(name);
         return new Adapter(PInvoke.OpenAdapter(name));
     }
 
+    [SupportedOSPlatform("Windows")]
     private Adapter(AdapterHandle handle)
     {
         _handle = handle;
@@ -74,6 +79,7 @@ public sealed class Adapter : IDisposable
     /// <summary>
     /// Returns the LUID of the adapter.
     /// </summary>
+    [SupportedOSPlatform("Windows")]
     public ulong GetLuid()
     {
         ObjectDisposedException.ThrowIf(_handle.IsClosed, this);
@@ -95,6 +101,7 @@ public sealed class Adapter : IDisposable
     /// <exception cref="InvalidCapacityException">Thrown if capacity is an invalid value</exception>
     /// <exception cref="ObjectDisposedException">Thrown if this <see cref="Adapter"/> has already been disposed.</exception>
     /// <exception cref="System.ComponentModel.Win32Exception">Thrown if construction fails</exception>
+    [SupportedOSPlatform("Windows")]
     public Session StartSession(uint capacity)
     {
         ObjectDisposedException.ThrowIf(_handle.IsClosed, this);

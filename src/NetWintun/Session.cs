@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.Win32.SafeHandles;
 
@@ -15,6 +16,7 @@ public sealed class Session : IDisposable
     private readonly AsyncManualResetEvent _requestPoke = new();
     private readonly RegisteredWaitHandle _registeredWaitHandle;
 
+    [SupportedOSPlatform("Windows")]
     internal Session(SessionHandle handle)
     {
         _handle = handle;
@@ -40,6 +42,7 @@ public sealed class Session : IDisposable
     /// <exception cref="System.ComponentModel.Win32Exception">
     /// Thrown when sending fails. (E.g. adapter or buffer is full.)
     /// </exception>
+    [SupportedOSPlatform("Windows")]
     public void SendPacket(ReadOnlySpan<byte> packet)
     {
         ObjectDisposedException.ThrowIf(_handle.IsClosed, this);
@@ -76,6 +79,7 @@ public sealed class Session : IDisposable
     /// <exception cref="OperationCanceledException">
     /// Thrown if <paramref name="cancellationToken"/> was cancelled
     /// </exception>
+    [SupportedOSPlatform("Windows")]
     public async ValueTask<byte[]> ReceivePacketAsync(CancellationToken cancellationToken = default)
     {
         ObjectDisposedException.ThrowIf(_handle.IsClosed, this);
@@ -104,6 +108,7 @@ public sealed class Session : IDisposable
     /// <exception cref="System.ComponentModel.Win32Exception">
     /// Thrown when receive fails. (E.g. adapter is terminating, buffer is corrupt.)
     /// </exception>
+    [SupportedOSPlatform("Windows")]
     public bool TryReceivePacket(out byte[] packet)
     {
         ObjectDisposedException.ThrowIf(_handle.IsClosed, this);
